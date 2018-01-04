@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 
 class Today extends React.Component {
-    
+
   render() {
     return (
     <div className="mx-auto" style={{maxWidth: '75%'}}> 
@@ -24,7 +24,7 @@ class Today extends React.Component {
                 <td className="text-right">700</td>
               </tr>
               <tr>
-                <td>餐點二</td>
+                <td>滷肉飯</td>
                 <td className="text-right">5</td>
                 <td className="text-right">350</td>
               </tr>
