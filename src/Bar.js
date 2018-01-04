@@ -29,9 +29,9 @@ class Bar extends React.Component {
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar className="ml-auto">
-            <LinkContainer exact to="/"><NavItem><NavLink>Today</NavLink></NavItem></LinkContainer>
-            <LinkContainer to="/orders"><NavItem><NavLink>Orders</NavLink></NavItem></LinkContainer>
-            <LinkContainer to="/profile"><NavItem><NavLink>Profile</NavLink></NavItem></LinkContainer>
+            <LinkContainer exact to="/"><NavItem><NavLink onClick={this.toggleNavbar} >Today</NavLink></NavItem></LinkContainer>
+            <LinkContainer to="/orders"><NavItem><NavLink onClick={this.toggleNavbar} >Orders</NavLink></NavItem></LinkContainer>
+            <LinkContainer to="/profile"><NavItem><NavLink onClick={this.toggleNavbar} >Profile</NavLink></NavItem></LinkContainer>
             </Nav>
           </Collapse>
         </div>
