@@ -14,7 +14,7 @@ class Today extends React.Component {
             </thead>
             <tbody>
               <tr>
-                <td>餐點一</td>
+                <td>山雞肉飯</td>
                 <td className="text-right">10</td>
                 <td className="text-right">700</td>
               </tr>
