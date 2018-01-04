@@ -1,10 +1,15 @@
 import React, { Component } from "react";
- 
+import moment from "moment";
+
 class Today extends React.Component {
+    
   render() {
     return (
     <div className="mx-auto" style={{maxWidth: '75%'}}> 
-        <table className="table my-5">
+        <div className="my-3 text-center" id="today">
+        {moment().format("YYYY/MM/DD")}
+        </div>
+        <table className="table">
             <thead>
               <tr>
                 <th scope="col">餐點名稱</th>
@@ -39,4 +44,5 @@ class Today extends React.Component {
   }
 }
  
+
 export default Today
