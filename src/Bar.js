@@ -24,16 +24,16 @@ class Bar extends React.Component {
   render() {
     return (
       <Navbar className="navbar-dark bg-dark" expand="md">
-        <div class="container">
-        <NavbarBrand href="/" className="mr-auto">BENTO Shop </NavbarBrand>
-        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-        <Collapse isOpen={!this.state.collapsed} navbar>
-          <Nav navbar className="ml-auto">
-          <LinkContainer exact to="/"><NavItem><NavLink>Today</NavLink></NavItem></LinkContainer>
-          <LinkContainer to="/orders"><NavItem><NavLink>Orders</NavLink></NavItem></LinkContainer>
-          <LinkContainer to="/profile"><NavItem><NavLink>Profile</NavLink></NavItem></LinkContainer>
-          </Nav>
-        </Collapse>
+        <div className="container">
+          <NavbarBrand href="/" className="mr-auto">BENTO Shop </NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav navbar className="ml-auto">
+            <LinkContainer exact to="/"><NavItem><NavLink>Today</NavLink></NavItem></LinkContainer>
+            <LinkContainer to="/orders"><NavItem><NavLink>Orders</NavLink></NavItem></LinkContainer>
+            <LinkContainer to="/profile"><NavItem><NavLink>Profile</NavLink></NavItem></LinkContainer>
+            </Nav>
+          </Collapse>
         </div>
       </Navbar>
     );
