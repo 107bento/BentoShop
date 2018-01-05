@@ -9,7 +9,6 @@ class Orders extends React.Component {
         <thead>
             <tr>
                 <th scope="col">日期</th>
-                <th scope="col">訂購人</th>
                 <th scope="col">訂購金額</th>
                 <th scope="col">展開</th>
             </tr>
@@ -17,19 +16,16 @@ class Orders extends React.Component {
         <tbody>
             <tr>
                 <td>1/3</td>
-                <td>Safefly</td>
                 <td>450</td>
                 <td><i class="fa fa-chevron-down" aria-hidden="true"></i></td>
             </tr>
             <tr>
                 <td>1/3</td>
-                <td>BigSafe</td>
                 <td>380</td>
                 <td><i class="fa fa-chevron-down" aria-hidden="true"></i></td>
             </tr>
             <tr>
                 <td>1/3</td>
-                <td>SmallFly</td>
                 <td>510</td>
                 <td><i class="fa fa-chevron-down" aria-hidden="true"></i></td>
             </tr>
