@@ -31,6 +31,7 @@ class Bar extends React.Component {
             <Nav navbar className="ml-auto">
             <LinkContainer exact to="/"><NavItem><NavLink onClick={this.toggleNavbar} >Today</NavLink></NavItem></LinkContainer>
             <LinkContainer to="/orders"><NavItem><NavLink onClick={this.toggleNavbar} >Orders</NavLink></NavItem></LinkContainer>
+            <LinkContainer to="/menu"><NavItem><NavLink onClick={this.toggleNavbar} >Menu</NavLink></NavItem></LinkContainer>
             <LinkContainer to="/profile"><NavItem><NavLink onClick={this.toggleNavbar} >Profile</NavLink></NavItem></LinkContainer>
             </Nav>
           </Collapse>
