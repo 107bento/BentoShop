@@ -4,10 +4,10 @@ import {
   Switch,
 } from "react-router-dom";
 
-
 import Today from "./Today";
 import Orders from "./Orders";
 import Profile from "./Profile";
+import Menu from "./Menu";
 import Bar from "./Bar";
 
 class DefaultContainer extends Component {
