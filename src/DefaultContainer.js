@@ -20,6 +20,7 @@ class DefaultContainer extends Component {
           <Switch>
               <Route exact path="/" component={Today}/>
               <Route path="/orders" component={Orders}/>
+              <Route path="/menu" component={Menu}/>
               <Route path="/profile" component={Profile}/>
           </Switch>
         </div>
