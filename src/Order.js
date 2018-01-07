@@ -3,7 +3,7 @@ class Order extends React.Component {
 
   render() {
     return (
-    <div className="mx-auto" style={{maxWidth: '75%'}}> 
+    <div className="mx-auto" style={{maxWidth: '75%'}}>
         <div className="my-3 text-center" id="today">
             {this.props.match.params.orderDate}
         </div>
