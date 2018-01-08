@@ -17,13 +17,13 @@ class LoginContainer extends Component {
     // console.log(this);
     const username = this.state.formValues.username;
     const password = this.state.formValues.password;
-    
+
     API.login(username, password).then(response => {
       if (response.statusCode === 200) {
         console.log(response);
 
         window.location.replace("/");
-      } else if (response.statusCode === 400) {
+      } else if (response.statusCode === 401) {
         alert('帳號或密碼錯誤，請重新登入');
         this.setState({
           formValues: {

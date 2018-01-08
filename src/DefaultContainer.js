@@ -15,13 +15,13 @@ class DefaultContainer extends Component {
     return (
       <div className="">
         <Bar> </Bar>
-        
+
         <div className="container mx-auto">
           <Switch>
-              <Route exact path="/" component={Today}/>
-              <Route path="/orders" component={Orders}/>
-              <Route path="/menu" component={Menu}/>
-              <Route path="/profile" component={Profile}/>
+            <Route exact path="/" component={Today}/>
+            <Route path="/orders" component={Orders}/>
+            <Route path="/menu" component={Menu}/>
+            <Route path="/profile" component={Profile}/>
           </Switch>
         </div>
       </div>
