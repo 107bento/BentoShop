@@ -1,9 +1,20 @@
 import React, { Component } from "react";
+
 class Menu extends React.Component {
 
   render() {
     return (
-    <div className="mx-auto" style={{maxWidth: '75%'}}> 
+    <div className="mx-auto" style={{maxWidth: '75%'}}>
+      <table className="table text-center addItem">
+            <tbody>
+                <tr>
+                    <th className="align-middle">新增餐點</th>
+                    <td><input id="newTitle" type="text" className="form-control" placeholder='餐點名稱'/></td>
+                    <td><input id="newPrice" type="text" className="form-control" placeholder='餐點價格'/></td>
+                    <td className="addOk align-middle"><i className="fa fa-plus-square-o" aria-hidden="true"　style={awesomeSize}/></td>
+                </tr>
+            </tbody>
+        </table>
         <table className="table table-stripped text-center">
             <thead>
                 <tr>
@@ -17,20 +28,20 @@ class Menu extends React.Component {
                 <tr>
                     <td>山雞肉飯</td>
                     <td>70</td>
-                    <td><i className="fa fa-pencil" aria-hidden="true"/></td>
-                    <td><i className="fa fa-trash" aria-hidden="true"/></td>
+                    <td><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
+                    <td><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
                 </tr>
                 <tr>
                     <td>山雞肉飯</td>
                     <td>70</td>
-                    <td><i className="fa fa-pencil" aria-hidden="true"/></td>
-                    <td><i className="fa fa-trash" aria-hidden="true"/></td>
+                    <td><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
+                    <td><i className="fa fa-trash" aria-hidden="true"style={awesomeSize}/></td>
                 </tr>
                 <tr>
                     <td>山雞肉飯</td>
                     <td>70</td>
-                    <td><i className="fa fa-pencil" aria-hidden="true"/></td>
-                    <td><i className="fa fa-trash" aria-hidden="true"/></td>
+                    <td><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
+                    <td><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
                 </tr>
             </tbody>
         </table>
@@ -38,5 +49,9 @@ class Menu extends React.Component {
     );
   }
 }
+
+const awesomeSize={
+  fontSize:'1.5em'
+};
  
 export default Menu
