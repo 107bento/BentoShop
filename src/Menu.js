@@ -21,14 +21,14 @@ class Menu extends React.Component {
       meals: []
     };
 
-    //在constructor裡就綁住this,防止後面this指到父元素
+    // 在 constructor 裡就綁住 this,防止後面 this 指到父元素
     this.editToggle = this.editToggle.bind(this);
     this.deleteToggle = this.deleteToggle.bind(this);
     this.addMeal = this.addMeal.bind(this);
     this.getShopMenu();
   }
 
-  //跳出editModal,抓當前餐點名稱,價格
+  // 跳出 editModal,抓當前餐點名稱,價格
   editToggle(mealName, mealPrice) {
     this.setState({
       editOpen: !this.state.editOpen,
@@ -37,7 +37,7 @@ class Menu extends React.Component {
     });
   }
 
-  //跳出editModal,抓當前餐點名稱
+  // 跳出 deleteModal,抓當前餐點名稱
   deleteToggle(mealName) {
     this.setState({
       deleteOpen: !this.state.deleteOpen,
@@ -50,10 +50,10 @@ class Menu extends React.Component {
     // console.log(this.refs.name.value, this.refs.price.value);
     const mealName = this.refs.name.value;
     const mealPrice = this.refs.price.value;
-    //在原本欄位前面新增餐點,並顯示原餐點
+    // 在原本欄位前面新增餐點,並顯示原餐點
     const newMeals = [{meal_name: mealName, meal_price: mealPrice, meal_discount: 0}, ...this.state.meals
     ];
-    //更新餐點陣列
+    // 更新餐點陣列
     this.setState({
       meals: newMeals
     });
