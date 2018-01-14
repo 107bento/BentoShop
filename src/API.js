@@ -34,6 +34,19 @@ const API = (() => {
     return _requestHandle(request);
   }
 
+  function updateShopInfo(data) {
+
+    const request = fetch(`${env.baseUrl}/shops/me/info`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+      credentials: 'include'
+    });
+
+    return _requestHandle(request);
+  }
 
   // http request 的中介處理
   function _requestHandle(request) {
@@ -63,6 +76,7 @@ const API = (() => {
   return {
     login,
     getShopInfo,
+    updateShopInfo,
   }
 
 })();
