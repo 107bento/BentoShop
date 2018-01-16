@@ -87,14 +87,23 @@ class Menu extends React.Component {
 
     return (
     <div className="mx-auto" style={{maxWidth: '75%'}}>
-        <form className="row my-2" onSubmit={this.addMeal}>
-          <div className="col-md-2">新增餐點</div>
-          <div className="col-md-4"><input type="text" placeholder="餐點名稱" ref="name"/></div>
-          <div className="col-md-4"><input type="text" placeholder="餐點價格" ref="price"/></div>
-          <div className="col-md-2"><Button type="submit" color="success">新增</Button></div>
-          {/* <i className="fa fa-plus-square-o" aria-hidden="true" style={awesomeSize}/> */}
-        </form>
-        <table className="table table-stripped text-center">
+        <Card className="my-3" mb-2 outline color="primary">
+          <CardHeader style={{backgroundColor: '#428bca', color: '#FFF'}} text-white>新增餐點</CardHeader>
+          <CardBody>
+            <div className="row">
+              <div className="col-md-5 form-group">
+                <label>餐點名稱</label>
+                <input className="form-control" type="text" placeholder="ex: 雞腿飯" ref="name"/>
+              </div>
+              <div className="col-md-5 form-group">
+                <label>餐點價錢</label>
+                <input className="form-control" type="text" placeholder="ex: 97" ref="price"/>
+              </div>
+              <div className="col-md-2 text-center"><Button type="submit" color="success" className="my-3" style={{width: 90}}>新增</Button></div>
+            </div>
+          </CardBody>
+        </Card>
+        <table className="my-2 table table-bordered table-hover text-center">
             <thead>
                 <tr>
                     <td>餐點</td>
