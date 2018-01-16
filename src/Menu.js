@@ -4,7 +4,10 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Button
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
 } from 'reactstrap';
 import {API} from './API';
 
@@ -106,7 +109,7 @@ class Menu extends React.Component {
         <table className="my-2 table table-bordered table-hover text-center">
             <thead>
                 <tr>
-                    <td>餐點</td>
+                    <td>餐點名稱</td>
                     <td>價格</td>
                     <td>編輯</td>
                     <td>刪除</td>
@@ -128,7 +131,7 @@ class Menu extends React.Component {
             </tbody>
         </table>
         <Modal isOpen={this.state.editOpen} toggle={this.editToggle}>
-          <ModalHeader>編輯</ModalHeader>
+          <ModalHeader>餐點編輯</ModalHeader>
           <ModalBody>
           <div className="form-group">
               <div className="row px-5">
@@ -150,7 +153,7 @@ class Menu extends React.Component {
         </Modal>
 
         <Modal isOpen={this.state.deleteOpen} toggle={this.deleteToggle}>
-          <ModalHeader>提示</ModalHeader>
+          <ModalHeader>刪除餐點</ModalHeader>
           <ModalBody>
             <div>確定要刪除 {this.state.currentMealName} 嗎</div>
           </ModalBody>
