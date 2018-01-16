@@ -110,8 +110,8 @@ class Menu extends React.Component {
                     <tr key={i}>
                       <td>{meal.meal_name}</td>
                       <td>{meal.meal_price}</td>
-                      <td><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize} onClick={()=>this.editToggle(meal.meal_name, meal.meal_price)}/></td>
-                      <td><i className="fa fa-trash" aria-hidden="true" style={awesomeSize} onClick={()=>this.deleteToggle(meal.meal_name)}/></td>
+                      <td onClick={()=>this.editToggle(meal.meal_name, meal.meal_price)}><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
+                      <td onClick={()=>this.deleteToggle(meal.meal_name)}><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
                     </tr>
                   )
                 })
