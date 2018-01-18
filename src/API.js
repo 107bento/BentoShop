@@ -48,6 +48,47 @@ const API = (() => {
     return _requestHandle(request);
   }
 
+  // add meal
+  function addMeal(data) {
+    const request = fetch(`${env.baseUrl}/shops/me/menu`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+      credentials: 'include'
+    });
+
+    return _requestHandle(request);
+  }
+
+  // edit meal
+  function editMeal(data) {
+    const request = fetch(`${env.baseUrl}/shops/me/menu/${data.meal_id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+      credentials: 'include'
+    });
+
+    return _requestHandle(request);
+  }
+
+  // delete meal
+  function deleteMeal(meal_id) {
+    const request = fetch(`${env.baseUrl}/shops/me/menu/${meal_id}`, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    });
+
+    return _requestHandle(request);
+  }
+
   // http request 的中介處理
   function _requestHandle(request) {
     return request.then(fetchResponse => {
@@ -77,6 +118,9 @@ const API = (() => {
     login,
     getShopInfo,
     updateShopInfo,
+    addMeal,
+    editMeal,
+    deleteMeal,
   }
 
 })();
