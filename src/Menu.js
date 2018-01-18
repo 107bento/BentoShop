@@ -19,8 +19,11 @@ class Menu extends React.Component {
     this.state = {
       editOpen: false,
       deleteOpen: false,
+      currentMealId: '',
       currentMealName: '',
-      currentMealPrice: 0,
+      currentMealPrice: '',
+      inputMealName: '',
+      inputMealPrice: '',
       meals: []
     };
 
@@ -28,37 +31,63 @@ class Menu extends React.Component {
     this.editToggle = this.editToggle.bind(this);
     this.deleteToggle = this.deleteToggle.bind(this);
     this.addMeal = this.addMeal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.editMeal = this.editMeal.bind(this);
+    this.deleteMeal = this.deleteMeal.bind(this);
     this.getShopMenu();
   }
 
   // 跳出 editModal,抓當前餐點名稱,價格
-  editToggle(mealName, mealPrice) {
+  editToggle(mealId, mealName, mealPrice) {
     this.setState({
       editOpen: !this.state.editOpen,
+      currentMealId: mealId,
       currentMealName: mealName,
-      currentMealPrice: mealPrice
+      currentMealPrice: mealPrice,
     });
   }
 
   // 跳出 deleteModal,抓當前餐點名稱
-  deleteToggle(mealName) {
+  deleteToggle(mealName, mealId) {
     this.setState({
       deleteOpen: !this.state.deleteOpen,
-      currentMealName: mealName
+      currentMealName: mealName,
+      currentMealId: mealId,
     });
   }
 
   addMeal(e){
     e.preventDefault();
-    // console.log(this.refs.name.value, this.refs.price.value);
-    const mealName = this.refs.name.value;
-    const mealPrice = this.refs.price.value;
-    // 在原本欄位前面新增餐點,並顯示原餐點
-    const newMeals = [{meal_name: mealName, meal_price: mealPrice, meal_discount: 0}, ...this.state.meals
-    ];
-    // 更新餐點陣列
-    this.setState({
-      meals: newMeals
+
+    let meal = {
+      meal_name: this.state.inputMealName,
+      meal_price: parseInt(this.state.inputMealPrice),
+      meal_discount: 0
+    }
+
+    API.addMeal(meal).then((res) => {
+      if (res.statusCode == 200) {
+        console.log(res.data);
+        meal.meal_id = res.data.meal_id;
+        // 在原本欄位前面新增餐點,並顯示原餐點
+        const newMeals = [meal, ...this.state.meals
+        ];
+        console.log(newMeals);
+        // 更新餐點陣列
+        this.setState({
+          meals: newMeals,
+          inputMealName: '',
+          inputMealPrice: ''
+        });
+      } else if (res.statusCode == 401) {
+        alert('請重新登入');
+        window.location.replace("/login");
+      } else {
+        alert(res.errorMessages);
+        console.log(res.errorMessages);
+      }
+    }).catch((error) => {
+      alert(error);
     });
   }
 
@@ -68,8 +97,63 @@ class Menu extends React.Component {
         console.log(res.data);
         let data = res.data;
         this.setState({
-          meals: data.meals
+          meals: data.meals.reverse(),
+          inputMealName: '',
+          inputMealPrice: '',
         });
+      } else if (res.statusCode == 401) {
+        alert('請重新登入');
+        window.location.replace("/login");
+      } else {
+        alert(res.errorMessages);
+        console.log(res.errorMessages);
+      }
+    }).catch((error) => {
+      alert(error);
+    });
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  editMeal() {
+    // console.log(this.state.currentMealId);
+    const meal = {
+      meal_id: parseInt(this.state.currentMealId),
+      meal_name: this.state.currentMealName,
+      meal_price: parseInt(this.state.currentMealPrice),
+      meal_discount: 0,
+    };
+    API.editMeal(meal).then((res) => {
+      if (res.statusCode == 200) {
+        this.setState({
+          editOpen: !this.state.editOpen,
+        });
+        this.getShopMenu();
+      } else if (res.statusCode == 401) {
+        alert('請重新登入');
+        window.location.replace("/login");
+      } else {
+        alert(res.errorMessages);
+        console.log(res.errorMessages);
+      }
+    }).catch((error) => {
+      alert(error);
+    });
+  }
+
+  // 刪除某餐點
+  deleteMeal() {
+    console.log(this.state.currentMealId);
+    API.deleteMeal(this.state.currentMealId).then((res) => {
+      if (res.statusCode == 200) {
+        this.setState({
+          deleteOpen: !this.state.deleteOpen,
+        });
+        this.getShopMenu();
       } else if (res.statusCode == 401) {
         alert('請重新登入');
         window.location.replace("/login");
@@ -90,19 +174,19 @@ class Menu extends React.Component {
 
     return (
     <div className="mx-auto" style={{maxWidth: '75%'}}>
-        <Card className="my-3" mb-2 outline color="primary">
-          <CardHeader style={{backgroundColor: '#428bca', color: '#FFF'}} text-white>新增餐點</CardHeader>
+        <Card className="my-3" mb-2 outline>
+          <CardHeader style={{backgroundColor: '#353A3F', color: '#FFF'}}>新增餐點</CardHeader>
           <CardBody>
             <div className="row">
               <div className="col-md-5 form-group">
                 <label>餐點名稱</label>
-                <input className="form-control" type="text" placeholder="ex: 雞腿飯" ref="name"/>
+                <input className="form-control" type="text" name="inputMealName" placeholder="ex: 雞腿飯" value={this.state.inputMealName} onChange={this.handleChange}/>
               </div>
               <div className="col-md-5 form-group">
                 <label>餐點價錢</label>
-                <input className="form-control" type="text" placeholder="ex: 97" ref="price"/>
+                <input className="form-control" type="text" name="inputMealPrice" placeholder="ex: 97" value={this.state.inputMealPrice} onChange={this.handleChange}/>
               </div>
-              <div className="col-md-2 text-center"><Button type="submit" color="success" className="my-3" style={{width: 90}}>新增</Button></div>
+              <div className="col-md-2 text-center"><Button type="submit" color="success" className="my-3" style={{width: 90}} onClick={this.addMeal}>新增</Button></div>
             </div>
           </CardBody>
         </Card>
@@ -118,12 +202,13 @@ class Menu extends React.Component {
             <tbody>
               {
                 this.state.meals.map((meal, i) => {
+                  // console.log(meal);
                   return (
                     <tr key={i}>
                       <td>{meal.meal_name}</td>
                       <td>{meal.meal_price}</td>
-                      <td onClick={()=>this.editToggle(meal.meal_name, meal.meal_price)}><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
-                      <td onClick={()=>this.deleteToggle(meal.meal_name)}><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
+                      <td onClick={()=>this.editToggle(meal.meal_id, meal.meal_name, meal.meal_price)}><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
+                      <td onClick={()=>this.deleteToggle(meal.meal_name, meal.meal_id)}><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
                     </tr>
                   )
                 })
@@ -133,21 +218,21 @@ class Menu extends React.Component {
         <Modal isOpen={this.state.editOpen} toggle={this.editToggle}>
           <ModalHeader>餐點編輯</ModalHeader>
           <ModalBody>
-          <div className="form-group">
+            <div className="form-group">
               <div className="row px-5">
                 <div className="form-group col-md-7">
                   <label className="col-form-label">餐點名稱</label>
-                  <input type="text" className="form-control" value={this.state.currentMealName}/>
+                  <input type="text" className="form-control" name="currentMealName" value={this.state.currentMealName} onChange={this.handleChange}/>
                 </div>
                 <div className="form-group col-md-5">
                   <label className="col-form-label">金額</label>
-                  <input type="text" className="form-control" value={this.state.currentMealPrice}/>
+                  <input type="text" className="form-control" name="currentMealPrice" value={this.state.currentMealPrice} onChange={this.handleChange}/>
                 </div>
               </div>
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.editToggle}>儲存</Button>
+            <Button color="success" onClick={this.editMeal}>儲存</Button>
             <Button color="secondary" onClick={this.editToggle}>取消</Button>
           </ModalFooter>
         </Modal>
@@ -158,7 +243,7 @@ class Menu extends React.Component {
             <div>確定要刪除 {this.state.currentMealName} 嗎</div>
           </ModalBody>
           <ModalFooter>
-            <Button color="danger" onClick={this.deleteToggle}>刪除</Button>
+            <Button color="danger" onClick={this.deleteMeal}>刪除</Button>
             <Button color="secondary" onClick={this.deleteToggle}>取消</Button>
           </ModalFooter>
         </Modal>
@@ -170,8 +255,6 @@ class Menu extends React.Component {
 export default Menu;
 
 // TODO
-//　修改新增菜單的 layout
 // call API:
-// 新增
 // 修改
 // 刪除
