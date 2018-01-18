@@ -39,6 +39,23 @@ class Profile extends React.Component {
     e.preventDefault();
     console.log(this.state);
 
+    let shop_time = '';
+    if (this.state.mon) {
+      shop_time += '1,';
+    }
+    if (this.state.tue) {
+      shop_time += '2,';
+    }
+    if (this.state.wed) {
+      shop_time += '3,';
+    }
+    if (this.state.thu) {
+      shop_time += '4,';
+    }
+    if (this.state.fri) {
+      shop_time += '5,';
+    }
+
     const data = {
       shop_name: this.state.shop_name,
       username: this.state.username,
@@ -49,7 +66,7 @@ class Profile extends React.Component {
       highest_amount: this.state.highest_amount,
       lowest_amount: this.state.lowest_amount,
       shop_discount: this.state.shop_discount,
-      shop_time: this.state.shop_time,
+      shop_time: shop_time,
       settlement: this.state.settlement,
       payment: this.state.payment,
     }
@@ -140,7 +157,7 @@ class Profile extends React.Component {
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
 
   handleCheckbox(e) {
