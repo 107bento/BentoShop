@@ -89,6 +89,19 @@ const API = (() => {
     return _requestHandle(request);
   }
 
+  // 拿到某店家所擁有的訂單
+  function getShopOrders() {
+    const request = fetch(`${env.baseUrl}/shops/me/orders`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    });
+
+    return _requestHandle(request);
+  }
+
   // http request 的中介處理
   function _requestHandle(request) {
     return request.then(fetchResponse => {
@@ -121,6 +134,7 @@ const API = (() => {
     addMeal,
     editMeal,
     deleteMeal,
+    getShopOrders,
   }
 
 })();
