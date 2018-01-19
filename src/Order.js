@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import {Button} from 'reactstrap';
+
 class Order extends React.Component {
 
   render() {
+
     return (
-    <div className="mx-auto" style={{maxWidth: '75%'}}>
         <div className="my-3 text-center" id="today">
             {this.props.match.params.orderDate}
+    <div className="mx-auto" style={{maxWidth: '45rem'}}>
         </div>
         <div className="row">
           <div className="col-md-1 text-center">

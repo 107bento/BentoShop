@@ -172,7 +172,7 @@ class Profile extends React.Component {
     return (
       <div>
 
-        <form className="mx-auto my-2" style={{maxWidth: '75%'}} onSubmit={this.handleSubmit}>
+        <form className="mx-auto my-2" style={{maxWidth: '45rem'}} onSubmit={this.handleSubmit}>
 
           <h4 className=""><span className="badge badge-primary">店家資料</span></h4>
 

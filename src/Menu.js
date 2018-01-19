@@ -173,80 +173,103 @@ class Menu extends React.Component {
     };
 
     return (
-    <div className="mx-auto" style={{maxWidth: '75%'}}>
-        <Card className="my-3" mb-2 outline>
-          <CardHeader style={{backgroundColor: '#353A3F', color: '#FFF'}}>新增餐點</CardHeader>
-          <CardBody>
-            <div className="row">
-              <div className="col-md-5 form-group">
-                <label>餐點名稱</label>
-                <input className="form-control" type="text" name="inputMealName" placeholder="ex: 雞腿飯" value={this.state.inputMealName} onChange={this.handleChange}/>
-              </div>
-              <div className="col-md-5 form-group">
-                <label>餐點價錢</label>
-                <input className="form-control" type="text" name="inputMealPrice" placeholder="ex: 97" value={this.state.inputMealPrice} onChange={this.handleChange}/>
-              </div>
-              <div className="col-md-2 text-center"><Button type="submit" color="success" className="my-3" style={{width: 90}} onClick={this.addMeal}>新增</Button></div>
+    <div className="mx-auto" style={{maxWidth: '45rem'}}>
+      <Card className="my-3" outline>
+        <CardHeader style={{backgroundColor: '#353A3F', color: '#FFF'}}>新增餐點</CardHeader>
+        <CardBody>
+          <div className="row">
+            <div className="col-md-5 form-group">
+              <label>餐點名稱</label>
+              <input className="form-control" type="text" name="inputMealName" placeholder="ex: 雞腿飯" value={this.state.inputMealName} onChange={this.handleChange}/>
             </div>
-          </CardBody>
-        </Card>
-        <table className="my-2 table table-bordered table-hover text-center">
-            <thead>
-                <tr>
-                    <td>餐點名稱</td>
-                    <td>價格</td>
-                    <td>編輯</td>
-                    <td>刪除</td>
-                </tr>
-            </thead>
-            <tbody>
-              {
-                this.state.meals.map((meal, i) => {
-                  // console.log(meal);
-                  return (
-                    <tr key={i}>
-                      <td>{meal.meal_name}</td>
-                      <td>{meal.meal_price}</td>
-                      <td onClick={()=>this.editToggle(meal.meal_id, meal.meal_name, meal.meal_price)}><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
-                      <td onClick={()=>this.deleteToggle(meal.meal_name, meal.meal_id)}><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-        </table>
-        <Modal isOpen={this.state.editOpen} toggle={this.editToggle}>
-          <ModalHeader>餐點編輯</ModalHeader>
-          <ModalBody>
-            <div className="form-group">
-              <div className="row px-5">
-                <div className="form-group col-md-7">
-                  <label className="col-form-label">餐點名稱</label>
-                  <input type="text" className="form-control" name="currentMealName" value={this.state.currentMealName} onChange={this.handleChange}/>
-                </div>
-                <div className="form-group col-md-5">
-                  <label className="col-form-label">金額</label>
-                  <input type="text" className="form-control" name="currentMealPrice" value={this.state.currentMealPrice} onChange={this.handleChange}/>
-                </div>
-              </div>
+            <div className="col-md-5 form-group">
+              <label>餐點價錢</label>
+              <input className="form-control" type="text" name="inputMealPrice" placeholder="ex: 97" value={this.state.inputMealPrice} onChange={this.handleChange}/>
             </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="success" onClick={this.editMeal}>儲存</Button>
-            <Button color="secondary" onClick={this.editToggle}>取消</Button>
-          </ModalFooter>
-        </Modal>
+            <div className="col-md-2 text-center"><Button type="submit" color="success" className="my-3" style={{width: 90}} onClick={this.addMeal}>新增</Button></div>
+          </div>
+        </CardBody>
+      </Card>
+      <table className="my-2 table table-bordered table-hover text-center">
+          <thead>
+              <tr>
+                  <td>餐點名稱</td>
+                  <td>價格</td>
+                  <td>編輯</td>
+                  <td>刪除</td>
+              </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.meals.map((meal, i) => {
+                // console.log(meal);
+                return (
+                  <tr key={i}>
+                    <td>{meal.meal_name}</td>
+                    <td>{meal.meal_price}</td>
+                    <td onClick={()=>this.editToggle(meal.meal_id, meal.meal_name, meal.meal_price)}><i className="fa fa-pencil" aria-hidden="true" style={awesomeSize}/></td>
+                    <td onClick={()=>this.deleteToggle(meal.meal_name, meal.meal_id)}><i className="fa fa-trash" aria-hidden="true" style={awesomeSize}/></td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+      </table>
 
-        <Modal isOpen={this.state.deleteOpen} toggle={this.deleteToggle}>
-          <ModalHeader>刪除餐點</ModalHeader>
-          <ModalBody>
-            <div>確定要刪除 {this.state.currentMealName} 嗎</div>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="danger" onClick={this.deleteMeal}>刪除</Button>
-            <Button color="secondary" onClick={this.deleteToggle}>取消</Button>
-          </ModalFooter>
-        </Modal>
+      <Modal isOpen={this.state.editOpen} toggle={this.editToggle}>
+        <ModalHeader>餐點編輯</ModalHeader>
+        <ModalBody>
+          <div className="form-group">
+            <div className="row px-5">
+              <div className="form-group col-md-7">
+                <label className="col-form-label">餐點名稱</label>
+                <input type="text" className="form-control" name="currentMealName" value={this.state.currentMealName} onChange={this.handleChange}/>
+              </div>
+              <div className="form-group col-md-5">
+                <label className="col-form-label">金額</label>
+                <input type="text" className="form-control" name="currentMealPrice" value={this.state.currentMealPrice} onChange={this.handleChange}/>
+              </div>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="success" onClick={this.editMeal}>儲存</Button>
+          <Button color="secondary" onClick={this.editToggle}>取消</Button>
+        </ModalFooter>
+      </Modal>
+
+      <Modal isOpen={this.state.editOpen} toggle={this.editToggle}>
+        <ModalHeader>餐點編輯</ModalHeader>
+        <ModalBody>
+          <div className="form-group">
+            <div className="row px-5">
+              <div className="form-group col-md-7">
+                <label className="col-form-label">餐點名稱</label>
+                <input type="text" className="form-control" name="currentMealName" value={this.state.currentMealName} onChange={this.handleChange}/>
+              </div>
+              <div className="form-group col-md-5">
+                <label className="col-form-label">金額</label>
+                <input type="text" className="form-control" name="currentMealPrice" value={this.state.currentMealPrice} onChange={this.handleChange}/>
+              </div>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="success" onClick={this.editMeal}>儲存</Button>
+          <Button color="secondary" onClick={this.editToggle}>取消</Button>
+        </ModalFooter>
+      </Modal>
+
+      <Modal isOpen={this.state.deleteOpen} toggle={this.deleteToggle}>
+        <ModalHeader>刪除餐點</ModalHeader>
+        <ModalBody>
+          <div>確定要刪除 {this.state.currentMealName} 嗎</div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" onClick={this.deleteMeal}>刪除</Button>
+          <Button color="secondary" onClick={this.deleteToggle}>取消</Button>
+        </ModalFooter>
+      </Modal>
     </div>
     );
   }

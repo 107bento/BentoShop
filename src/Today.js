@@ -5,7 +5,7 @@ class Today extends React.Component {
 
   render() {
     return (
-      <div className="mx-auto" style={{maxWidth: '75%'}}>
+      <div className="mx-auto" style={{maxWidth: '45rem'}}>
         <div className="my-3 text-center" id="today">
           {moment().format("YYYY/MM/DD")}
         </div>

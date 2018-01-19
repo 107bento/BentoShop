@@ -6,7 +6,7 @@ class OrderList extends React.Component {
 
   render() {
     return (
-    <div className="mx-auto" style={{maxWidth: '75%'}}>
+    <div className="mx-auto" style={{maxWidth: '45rem'}}>
       <ul>
         <Link to="orders/2018-01-06"><li>2018-01-06</li></Link>
       </ul>
