@@ -98,9 +98,22 @@ const API = (() => {
       },
       credentials: 'include'
     });
-
     return _requestHandle(request);
   }
+
+  //拿到今日所有訂單
+  function getTodayOrders(date){
+    const request = fetch(`${env.baseUrl}/shops/me/orders/${date}`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    });
+      return _requestHandle(request);
+
+  }
+
 
   // http request 的中介處理
   function _requestHandle(request) {
@@ -135,6 +148,7 @@ const API = (() => {
     editMeal,
     deleteMeal,
     getShopOrders,
+    getTodayOrders,
   }
 
 })();

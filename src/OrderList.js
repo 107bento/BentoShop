@@ -16,6 +16,7 @@ class OrderList extends React.Component {
     this.displayToggle=this.displayToggle.bind(this);
     this.saveOrder=this.saveOrder.bind(this);
     this.getShopOrders();
+    this.orderReverse=this.orderReverse.bind(this);
   }
 
   displayToggle(){
@@ -48,35 +49,36 @@ class OrderList extends React.Component {
   saveOrder(order) {
     window.order = order;
   }
+  orderReverse(){
+    this.setState({
+      orders: this.state.orders.reverse(),
+    });
+  }
 
   render() {
     const orders = this.state.orders;
     // window.orders = orders;
     return (
     <div className="mx-auto" style={{maxWidth: '45rem'}}>
-      <ul>
+      <h4 className="my-2"><span className="badge badge-primary">歷史訂單</span></h4>
+
+      <table className="table text-center table-striped">
+        <thead>
+          <th>#</th>
+          <th onClick={this.orderReverse}>日期 <i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th>總金額</th>
+        </thead>
+        <tbody>
         {orders.map((order, i) => {
-          console.log('order:', order.date);
-          return (<Link to={`orders/${order.date}`} key={i}><li onClick={() => this.saveOrder(order)}>{order.date}</li></Link>)
+          let total=0;
+          order.meals.map((meal) => {
+            total+=meal.meal_price*meal.amount;
+          });
+          return (<tr><td>{i+1}</td><td><Link to={`orders/${order.date}`} key={i}><i onClick={() => this.saveOrder(order)}>{order.date}</i></Link></td><td>{total}</td></tr>)
           })
         }
-
-        {/* <Link to="orders/2018-01-06"><li>2018-01-06</li></Link> */}
-      </ul>
-      {/* <h4 onClick={this.displayToggle}><span className="badge badge-warning">2017</span></h4>
-        <Collapse isOpen={this.state.display}>
-        <ListGroup>
-          <ListGroupItem>1月</ListGroupItem>
-          <ListGroupItem>2月</ListGroupItem>
-          <ListGroupItem>3月</ListGroupItem>
-          <ListGroupItem>4月</ListGroupItem>
-          <ListGroupItem>5月</ListGroupItem>
-          <ListGroupItem>6月</ListGroupItem>
-          <ListGroupItem>7月</ListGroupItem>
-          <ListGroupItem>8月</ListGroupItem>
-          <ListGroupItem>9月</ListGroupItem>
-        </ListGroup>
-        </Collapse> */}
+        </tbody>
+      </table>
     </div>
     );
   }

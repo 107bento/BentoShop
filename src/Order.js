@@ -40,19 +40,19 @@ class Order extends React.Component {
         <tbody>
           {
             order.meals.map((meal, i) => {
-              // total += meal.meal_price * meal.amount;
+              total += meal.meal_price * meal.amount;
               return (
                 <tr key={i}>
                   <td>{meal.meal_name}</td>
                   <td className="text-right">{meal.amount}</td>
-                  <td className="text-right">700</td>
+                  <td className="text-right">{meal.meal_price * meal.amount}</td>
                 </tr>
               );
             })
           }
           <tr className="font-weight-bold">
             <td scope="row" colSpan="2" >總金額</td>
-            <td className="text-right">1050</td>
+            <td className="text-right">{total}</td>
           </tr>
         </tbody>
       </table>
