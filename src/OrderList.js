@@ -11,9 +11,10 @@ class OrderList extends React.Component {
     super(props);
     this.state={
       display:false,
-      orders: {},
+      orders: [],
     };
     this.displayToggle=this.displayToggle.bind(this);
+    this.saveOrder=this.saveOrder.bind(this);
     this.getShopOrders();
   }
 
@@ -44,14 +45,19 @@ class OrderList extends React.Component {
     });
   }
 
+  saveOrder(order) {
+    window.order = order;
+  }
+
   render() {
     const orders = this.state.orders;
+    // window.orders = orders;
     return (
     <div className="mx-auto" style={{maxWidth: '45rem'}}>
       <ul>
-        {Object.keys(orders).forEach((key, i) => {
-          console.log('order:', orders[key].date);
-          return (<li>{orders[key].date}</li>);
+        {orders.map((order, i) => {
+          console.log('order:', order.date);
+          return (<Link to={`orders/${order.date}`} key={i}><li onClick={() => this.saveOrder(order)}>{order.date}</li></Link>)
           })
         }
 
